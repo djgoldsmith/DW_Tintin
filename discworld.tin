@@ -1,0 +1,9 @@
+#nop #var ttdir $homedir/tintin;
+
+#var tmpdir /tmp/tintin;
+
+
+
+
+#nop ------ ALIAS TO START DISCWORLD ------
+#alias {/discworld} {#session discworld discworld.starturtle.net 4242};

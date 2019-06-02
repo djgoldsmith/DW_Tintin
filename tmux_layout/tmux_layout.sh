@@ -5,7 +5,7 @@ tmux split-window -bhdl 20 'tail -F /tmp/tintin/status    2>/dev/null'
 
 
 #Fire up Tintin
-tintin foo.tin
+tintin discworld.tin
 
 #And Kill server when we finish
 tmux kill-session -t discworld
