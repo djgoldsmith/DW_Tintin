@@ -1,9 +1,17 @@
-#nop #var ttdir $homedir/tintin;
+#nop #config {verbose} {on}
 
+#nop -------- GLOBALS ------
+#var ttdir tintin;
 #var tmpdir /tmp/tintin;
 
+#var CLIENT_NAME TinTin++ 
+#var CLIENT_VERSION 2.01.7 
+
+#echo {===== DEBUG:  Loading Chat Stuff =====}
 
 
+#read $ttdir/chat.tin;
+#read $ttdir/zmp.tin;
 
 #nop ------ ALIAS TO START DISCWORLD ------
 #alias {/discworld} {#session discworld discworld.starturtle.net 4242};
