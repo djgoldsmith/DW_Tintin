@@ -1,0 +1,52 @@
+#class chat kill;
+#class chat open;
+
+#nop ------- ADD SOMETHING TO THE LOG FOR TESTIG --------
+#line log {$tmpdir/chat} {"Chat Initialised"};
+
+#nop own tells: log;
+#action {~^%*You {tell|ask|exclaim to|whisper to} %1:%2}
+{
+	#format {name} {%l} {%1};
+	#tab {$name};
+	#unvar name;
+	#line log {$tmpdir/chat} {%0};
+};
+
+#nop club channels: log, notify, say, bell;
+#action {~%*^({(?:\w+ )?\w+}) %2: %3$}
+{
+	#format {name} {%l} {%2};
+	#tab {$name};
+	#unvar name;
+#nop	#bell;
+#nop	/speak %3;
+	#line log {$tmpdir/chat} {%0};
+}
+
+#nop talker channels: log;
+#action {~^%*(%1) %2 wispy{:|} %3$}
+{
+	#format {name} {%l} {%2};
+	#tab {$name};
+	#unvar name;
+	#line log {$tmpdir/chat} {%0};
+}
+
+#nop tells: log, notify, say, bell;
+#action {~^%*{\w+}%+{says to|asks|tells|exclaims to|whispers to} %*you{(?: in \w+)?}: %4$}
+{
+    #if {"%0" == "%*Stephen Jobbes%*" || "%0" == "%*Noobie%*"}
+    {   #nop ignore them;
+        #return;
+    };
+	#format name {%l} {%2};
+	#tab {$name};
+	#unvar name;
+	#bell;
+#nop	/speak %4;
+	#line log {$tmpdir/chat} {%0};
+}
+
+
+#class chat close;
