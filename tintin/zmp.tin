@@ -97,17 +97,48 @@
 
 #event {IAC SB ZMP char.login}
 {
-	#showme <118>ZMP RECV char.login (%0)
-	#var CharLogin {%0}
+	#showme <118>ZMP RECV char.login (%0);
+	#var CharLogin {%0};
 }
 
 #event {IAC SB ZMP char.info}
 {
-	#showme <118>ZMP RECV char.info (%0)
-	#var CharInfo {%0}
+	#showme <118>ZMP RECV char.info (%0);
+	#var CharInfo {%0};
+}
+
+#nop --- TEMP Holder for the Stat we are deailing with
+#unvar vitalName;
+#event {IAC SB ZMP char.vitals}
+{
+	#showme <118>ZMP RECV char.vitals (%0);
+
+	#if {&{vitalName}}
+	{
+		#showme --> Set vital $vitalName to %0;
+		#var vitals[$vitalName] {%0};
+		#unvar vitalName;
+	};
+	#else
+	{
+		#var vitalName %0;
+		#showme VitalName $vitalName;
+	}
+
 }
 
 
+#event {IAC SB ZMP room.info}
+{
+	#showme <118>ZMP RECV room.info (%0)
+}
+
+#event {IAC SB ZMP room.map}
+{
+	#showme <118>ZMP RECV room.map %0;
+	#line log {$tmpdir/map} Mapupdate;		
+	#line logverbatim {$tmpdir/map} %0;	
+}
 
 
 #class zmp close;

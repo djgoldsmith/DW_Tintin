@@ -48,7 +48,3 @@ Uses Tmux for split screens
 					
 ~~~
 
-
-Chats
-
-(One) HaLoJ's wispy voice comes from the wooden bracelet, saying: Hello Peeps!
