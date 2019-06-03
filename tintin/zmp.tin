@@ -1,25 +1,6 @@
 #class zmp kill;
 #class zmp open;
 
-#var CharLogin;
-#var CharInfo;
-
-#nop ---------------- MY STUFF -----------------
-
-#event {IAC SB ZMP char.login}
-{
-	#showme <118>ZMP RECV char.login (%0)
-	#var CharLogin {%0}
-}
-
-#event {IAC SB ZMP char.info}
-{
-	#showme <118>ZMP RECV char.info (%0)
-	#var CharInfo {%0}
-}
-
-
-
 #nop -------------------------------------------
 
 #event {IAC WILL ZMP}
@@ -65,7 +46,7 @@
 {
 	#showme <118>ZMP RECV zmp.check (%0);
 
-	#regex {%0} {{zmp.ident|zmp.ping|zmp.time|zmp.check}}
+	#regex {%0} {{zmp.ident|zmp.ping|zmp.time|zmp.check|char.login|char.info|char.vitals|room.info|room.map|room.writtenmap|Window.Frame.map}}
 	{
 		zmp.support %0
 	}
@@ -109,4 +90,24 @@
 	#gag {^ZMP {SEND|RECV}}
 }
 
-#class chat close;
+
+
+
+#nop ---------------- MY STUFF -----------------
+
+#event {IAC SB ZMP char.login}
+{
+	#showme <118>ZMP RECV char.login (%0)
+	#var CharLogin {%0}
+}
+
+#event {IAC SB ZMP char.info}
+{
+	#showme <118>ZMP RECV char.info (%0)
+	#var CharInfo {%0}
+}
+
+
+
+
+#class zmp close;
