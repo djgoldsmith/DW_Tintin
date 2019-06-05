@@ -111,18 +111,18 @@
 #unvar vitalName;
 #event {IAC SB ZMP char.vitals}
 {
-	#showme <118>ZMP RECV char.vitals (%0);
+	#nop #showme <118>ZMP RECV char.vitals (%0);
 
 	#if {&{vitalName}}
 	{
-		#showme --> Set vital $vitalName to %0;
+	 	#nop #showme --> Set vital $vitalName to %0;
 		#var vitals[$vitalName] {%0};
 		#unvar vitalName;
 	};
 	#else
 	{
-		#var vitalName %0;
-		#showme VitalName $vitalName;
+		#nop #var vitalName %0;
+		#nop #showme VitalName $vitalName;
 	}
 
 }
@@ -130,14 +130,14 @@
 
 #event {IAC SB ZMP room.info}
 {
-	#showme <118>ZMP RECV room.info (%0)
+	#nop #showme <118>ZMP RECV room.info (%0);
 }
 
 #event {IAC SB ZMP room.map}
 {
 	#showme <118>ZMP RECV room.map %0;
-	#line log {$tmpdir/map} Mapupdate;		
-	#line logverbatim {$tmpdir/map} %0;	
+	#line subs escape {#var mapoutput {%0}};
+	#line log {$tmpdir/map} $mapoutput;
 }
 
 
