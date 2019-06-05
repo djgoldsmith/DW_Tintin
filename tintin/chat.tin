@@ -33,6 +33,17 @@
 	#line log {$tmpdir/chat} {%0};
 }
 
+
+#nop talker channels: log;
+#action {~^%*(%1) %2 wisps{:|} %3$}
+{
+	#format {name} {%l} {%2};
+	#tab {$name};
+	#unvar name;
+	#line log {$tmpdir/chat} {%0};
+}
+
+
 #nop tells: log, notify, say, bell;
 #action {~^%*{\w+}%+{says to|asks|tells|exclaims to|whispers to} %*you{(?: in \w+)?}: %4$}
 {
