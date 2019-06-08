@@ -135,7 +135,7 @@
 
 #event {IAC SB ZMP room.map}
 {
-	#showme <118>ZMP RECV room.map %0;
+	#nop #showme <118>ZMP RECV room.map %0;
 	#line subs escape {#var mapoutput {%0}};
 	#line log {$tmpdir/map} $mapoutput;
 }

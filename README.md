@@ -48,3 +48,28 @@ Uses Tmux for split screens
 					
 ~~~
 
+## Mapping
+
+- Hopefully Fixed now.
+[ ] Add A Method to make the map show at the end 
+
+## CHAT
+
+                           │(One) Krylin's wispy voice comes from the wooden bracelet, saying: he wants to       │
+                           │     try and create some kinda trade deal while we're arguing with the EU and        │
+                           │     he can get some kind of leverage                                                │
+                           │(One) Krylin's wispy voice comes from the wooden bracelet, saying: pretty            │
+                           │     straight forward but a dick move I think :P                                     │
+                           │(One) Krylin's wispy voice comes from the wooden bracelet, saying: by dick I         │
+                           │     mean, Richard                                                                   │
+                           │(One) Ratman's wispy voice comes from the wooden bracelet, saying: so we still       │
+                           │     have hope for deal out of brexit?                                               │
+                           │(One) Krylin's wispy voice comes from the wooden bracelet, saying: haha nice         │
+                           │     one Ratty                                                                       │
+                           │To the northeast, the bell of the Assassins' Guild clock slowly chimes six           │
+                           │     times.                                                                          │
+                           │(One) Ratman's wispy voice comes from the wooden bracelet, saying: miss may          │
+                           │     will be happy about that                                                        │
+                           │    
+
+- Currently 79 Cols
