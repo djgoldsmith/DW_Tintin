@@ -121,8 +121,8 @@
 	};
 	#else
 	{
-		#nop #var vitalName %0;
-		#nop #showme VitalName $vitalName;
+		#var vitalName %0;
+		#nop #showme VitalName vitalName;
 	}
 
 }
@@ -138,6 +138,15 @@
 	#nop #showme <118>ZMP RECV room.map %0;
 	#line subs escape {#var mapoutput {%0}};
 	#line log {$tmpdir/map} $mapoutput;
+}
+
+#nop Method of logging a map and stats
+#alias {/displayStats}
+{
+	#line log {$tmpdir/map} ## MAP;
+	#line log {$tmpdir/map} $mapoutput;
+	#line log {$tmpdir/map} ## STATS;
+	#foreach {*vitals[%*]} {index} {#line log {$tmpdir/map} $index, $vitals[$index]};
 }
 
 
