@@ -1,0 +1,59 @@
+#class chat kill;
+#class chat open;
+
+#nop ---- SETUP Split for Quota ----
+#unsplit;
+#split {5};
+
+#nop #unvar quota; 
+
+#nop ---- PARSE THE QUOTA ----
+#action {^  Receipts received: A\$%1.$}
+{
+	#var quota[reciepts] %1;
+}
+
+#action {^  Amount owed: A\$%1.$}
+{
+	#var quota[owed] %1;
+}
+
+#action {^  Max quota: A\$%1.$}
+{
+	#var quota[max] %1;
+}
+
+
+
+#action {^  Time left: %1.$} {
+    #regex {%1} {%d hour{s?}} {
+        #var {quota[time][hour]} {&1};
+    } { #var {quota[time][hour]} {0} };
+    #regex {%1} {%d minute{s?}} {
+        #var {quota[time][min]} {&1};
+    } { #var {quota[time][min]} {0} };
+    #regex {%1} {%d second{s?}} {
+        #var {quota[time][sec]} {&1};
+    } { #var {quota[time][sec]} {0} };
+
+    #format {quota[readTime]} {%T};
+}
+
+
+
+
+#nop --- print function ----
+
+#function {printquota} {
+	  #math {quota_left} {$quota[max] - $quota[receipts]};
+	  #format {currentTime} {%T};
+	  #math {outTime} {$currentTime - $quota[readTime]};
+
+	  #showme {The Quota} {2} {3};
+	  #showme {$quota[reciepts] : $quota[max]  ($quota[owed] to pay)          } {3}{3};
+	  #showme {$outTime Seconds                    } {4}{3};
+}
+
+
+
+#class quota close;

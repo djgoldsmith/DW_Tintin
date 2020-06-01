@@ -11,6 +11,8 @@
 
 #read $ttdir/chat.tin;
 #read $ttdir/zmp.tin;
+#read $ttdir/quota.tin;
+
 
 #nop ------ ALIAS TO START DISCWORLD ------
 #alias {/discworld} {#session discworld discworld.starturtle.net 4242};
