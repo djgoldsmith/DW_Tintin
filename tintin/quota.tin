@@ -49,9 +49,9 @@
 	  #format {currentTime} {%T};
 	  #math {outTime} {$currentTime - $quota[readTime]};
 
-	  #showme {The Quota} {2} {3};
-	  #showme {$quota[reciepts] : $quota[max]  ($quota[owed] to pay)          } {3}{3};
-	  #showme {$outTime Seconds                    } {4}{3};
+	  #showme {<439>The Quota<099>} {2} {3};
+	  #showme {\$ $quota[reciepts] of $quota[max]  ($quota[owed] to pay Artan)          } {3}{3};
+	  #showme {$outTime Seconds<099>} {4}{3};
 }
 
 
