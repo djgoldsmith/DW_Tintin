@@ -9,7 +9,6 @@
 
 #echo {===== DEBUG:  Loading Chat Stuff =====}
 
-
 #read $ttdir/chat.tin;
 #read $ttdir/zmp.tin;
 

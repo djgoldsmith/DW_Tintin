@@ -1,8 +1,22 @@
 #class chat kill;
 #class chat open;
 
+
+#nop ------- NEW Function to do the logging for me ----
+
+
+#VARIABLE {chat_file} {$tmpdir/chat}
+#VARIABLE {chatline}
+#VARIABLE {inchat} 
+
+#FUNCTION {logChat} {
+    #line {log} {$chat_file}
+};
+
 #nop ------- ADD SOMETHING TO THE LOG FOR TESTIG --------
-#line log {$tmpdir/chat} {"Chat Initialised"};
+#line log {$chat_file} {"---- Chat Initialised ----"};
+
+
 
 #nop own tells: log;
 #action {~^%*You {tell|ask|exclaim to|whisper to} %1:%2}
@@ -24,25 +38,26 @@
 	#line log {$tmpdir/chat} {%0};
 }
 
-#nop talker channels: log;
-#action {~^%*(%1) %2 wispy{:|} %3$}
-{
-	#format {name} {%l} {%2};
-	#tab {$name};
-	#unvar name;
-	#line log {$tmpdir/chat} {%0};
+
+
+
+#nop --- NEW Talker Loggng
+#ACTION {~^%*(%1) %2 wisps{:|} %3} {
+        #return @logChat{};
+};
+
+
+#ACTION {~^%*{\w+}%+{says|exclaims}: %1} {
+	#return @logChat{};
 }
 
+#nop ----- 5SPACE Log
+#ACTION {^%+5s\w%1} {
+	#return @logChat{};
+	}
 
-#nop talker channels: log;
-#action {~^%*(%1) %2 wisps{:|} %3$}
-{
-	#format {name} {%l} {%2};
-	#tab {$name};
-	#unvar name;
-	#line log {$tmpdir/chat} {%0};
-}
-
+#nop #HIGH {~^%*{\w+}%+{says|exclaims}: %2} {reverse}
+#nop #HIGH {^%+5s\w%1} {reverse}
 
 #nop tells: log, notify, say, bell;
 #action {~^%*{\w+}%+{says to|asks|tells|exclaims to|whispers to} %*you{(?: in \w+)?}: %4$}
@@ -51,12 +66,7 @@
     {   #nop ignore them;
         #return;
     };
-	#format name {%l} {%2};
-	#tab {$name};
-	#unvar name;
-	#bell;
-#nop	/speak %4;
-	#line log {$tmpdir/chat} {%0};
+    #return @logChat{};
 }
 
 
