@@ -7,11 +7,17 @@ BASEDIR=$(readlink -f $(dirname "${BASH_SOURCE[0]}"))
 TMUXDIR=$BASEDIR/tmux_layout
 
 echo $BASEDIR
-echo $TMUXDIR
 
-if tmux has-session -t discworld >/dev/null; then
-    tmux attach -t discworld
-else
-    tmux new-session -s discworld "${TMUXDIR}/tmux_layout.sh"
-fi
+tintin discworld.tin
+
+
+
+
+# echo $TMUXDIR
+
+# if tmux has-session -t discworld >/dev/null; then
+#     tmux attach -t discworld
+# else
+#     tmux new-session -s discworld "${TMUXDIR}/tmux_layout.sh"
+# fi
 
